@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">Projetos de Pesquisa</h1>
+
+<div class="list-group">
+  {% for projeto in projetos %}
+    <a href="{% url 'detalhe_projeto' projeto.pk %}" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ projeto.titulo }}</h5>
+        <span class="badge bg-primary rounded-pill">{{ projeto.get_status_display }}</span>
+      </div>
+      <p class="mb-1">Orientador: {{ projeto.orientador.username }}</p>
+      <small>Início: {{ projeto.data_inicio }}</small>
+    </a>
+  {% empty %}
+    <div class="alert alert-warning">
+      Nenhum projeto de pesquisa cadastrado ainda.
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

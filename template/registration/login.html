@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Login</h2>
+
+{% if form.errors %}
+  <div class="alert alert-danger">
+    Seu nome de usuário e senha não conferem. Tente novamente.
+  </div>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+
+  {% csrf_token %}
+
+  {{ form.as_p }}
+
+  <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+{% endblock content %}
